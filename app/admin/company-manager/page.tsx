@@ -58,7 +58,6 @@ const CompanyManager = () => {
     if (field === "") {
       console.log("field is empty");
     }
-    console.log(company)
     return (
       company.name.toLowerCase().includes(searchQuery.toLowerCase()) &&
       company.city?.toLowerCase().includes(location.toLowerCase())
