@@ -37,12 +37,6 @@ const JobCardClose: React.FC<JobCardProps> = ({
   const router = useRouter();
   const path = usePathname();
 
-  const handleEdit = async (event: React.MouseEvent) => {
-    event.preventDefault();
-    event.stopPropagation();
-    router.push(`/company/edit-post/${id}`);
-  };
-
   const handleDelete = async (event: React.MouseEvent) => {
     event.preventDefault();
     event.stopPropagation();
@@ -74,14 +68,14 @@ const JobCardClose: React.FC<JobCardProps> = ({
         <div className="flex justify-between items-center mb-2">
           <h3 className="font-bold text-lg">{title}</h3>
           <div className="flex space-x-2">
-            <Image
+            {/* <Image
               src="/icon/edit-button.svg"
               width={20}
               height={20}
               alt="Edit"
               className="mr-2 cursor-pointer"
               onClick={handleEdit}
-            />
+            /> */}
             <Image
               src="/icon/delete-circle.svg"
               width={20}

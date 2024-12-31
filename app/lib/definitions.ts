@@ -45,6 +45,7 @@ export type JobDetail = {
   messageId: string;
   isBookMark: boolean;
   isApplied: boolean;
+  numberApplicant: number;
 };
 
 export type CardCandidateApplied = {

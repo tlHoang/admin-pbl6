@@ -21,7 +21,7 @@ interface JobCardProps {
   onDelete: (id: string) => void;
 }
 
-const JobCardOpen: React.FC<JobCardProps> = ({
+const RecruiterJobCardOpen: React.FC<JobCardProps> = ({
   id,
   title,
   company,
@@ -36,6 +36,12 @@ const JobCardOpen: React.FC<JobCardProps> = ({
 }) => {
   const router = useRouter();
   const path = usePathname();
+
+  const handleEdit = async (event: React.MouseEvent) => {
+    event.preventDefault();
+    event.stopPropagation();
+    router.push(`/recruiter/edit-post/${id}`);
+  };
 
   const handleDelete = async (event: React.MouseEvent) => {
     event.preventDefault();
@@ -59,7 +65,7 @@ const JobCardOpen: React.FC<JobCardProps> = ({
   const handleSeeCandidate = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    router.push(`/admin/candidate-of-recruiter-manager/${id}`);
+    router.push(`/recruiter/candidate-manager/${id}`);
   };
 
   return (
@@ -68,14 +74,14 @@ const JobCardOpen: React.FC<JobCardProps> = ({
         <div className="flex justify-between items-center mb-2">
           <h3 className="font-bold text-lg">{title}</h3>
           <div className="flex space-x-2">
-            {/* <Image
+            <Image
               src="/icon/edit-button.svg"
               width={20}
               height={20}
               alt="Edit"
               className="mr-2 cursor-pointer"
               onClick={handleEdit}
-            /> */}
+            />
             <Image
               src="/icon/delete-circle.svg"
               width={20}
@@ -123,7 +129,7 @@ const JobCardOpen: React.FC<JobCardProps> = ({
           </div>
         </div>
 
-        {path.startsWith("/company/candidate-manager") ? (
+        {path.startsWith("/admin/candidate-of-recruiter-manager") ? (
           <div></div>
         ) : (
           <div
@@ -144,4 +150,4 @@ const JobCardOpen: React.FC<JobCardProps> = ({
   );
 };
 
-export default JobCardOpen;
+export default RecruiterJobCardOpen;
