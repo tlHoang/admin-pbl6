@@ -45,11 +45,27 @@ const Dashboard = () => {
     )
   }
 
-  const chartData = data.users.usersCreatedEachMonth.map((item, index) => ({
-    date: `${item.year}-${item.month.toString().padStart(2, "0")}-01`,
-    candidate: item.count,
-    recruiter: data.recruiters.recruitersCreatedEachMonth[index].count,
-  })).reverse()
+  // const chartData = data.users.usersCreatedEachMonth.map((item, index) => ({
+  //   date: `${item.year}-${item.month.toString().padStart(2, "0")}-01`,
+  //   candidate: item.count,
+  //   recruiter: data.recruiters.recruitersCreatedEachMonth[index].count,
+  // }))
+  // .reverse()
+
+  const chartData = data.users.usersCreatedEachMonth
+    .map((item, index) => ({
+      date: `${item.year}-${item.month.toString().padStart(2, "0")}-01`,
+      candidate: item.count,
+      recruiter: data.recruiters.recruitersCreatedEachMonth[index].count,
+    }))
+    .filter((item) => {
+      const date = new Date(item.date);
+      return (
+        (date.getFullYear() === 2024 && date.getMonth() >= 6) ||
+        (date.getFullYear() === 2025 && date.getMonth() < 6)
+      );
+    })
+    .reverse();
 
   const chartConfig = {
     views: {
@@ -59,10 +75,10 @@ const Dashboard = () => {
       label: "Người tìm việc",
       color: "hsl(var(--chart-1))",
     },
-    company: {
-      label: "Công ty",
-      color: "hsl(var(--chart-2))",
-    },
+    // company: {
+    //   label: "Công ty",
+    //   color: "hsl(var(--chart-2))",
+    // },
     recruiter: {
       label: "Nhà tuyển dụng",
       color: "hsl(var(--chart-3))",
@@ -71,7 +87,7 @@ const Dashboard = () => {
 
   const total = {
     candidate: data.users.totalUsers,
-    company: 5,
+    company: data.companies.totalCompanies,
     recruiter: data.recruiters.totalRecruiters,
   }
 
@@ -137,7 +153,7 @@ const Dashboard = () => {
               </CardDescription>
             </div>
             <div className="flex">
-              {["candidate", "company", "recruiter"].map((key) => {
+              {["candidate", "recruiter"].map((key) => {
                 const chart = key as keyof typeof chartConfig
                 return (
                   <button

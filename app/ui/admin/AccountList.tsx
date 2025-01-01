@@ -3,38 +3,51 @@ import AccountCard from "./AccountCard";
 import { fetchCompanyAccount } from "@/app/lib/data";
 import { AccountListSkeleton } from "../AdminSkeletons";
 import Pagination from "../Pagination";
+import { useAuth } from "@/app/contexts/auth-context";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 interface FormData {
-  name: string;
+  _id: string;
+  userId: string;
   email: string;
-  industry: string;
-  phone: string;
-  location: {
-    city: string;
-    address: string;
-  };
-  website: string;
+  name: string;
+  role: string;
+  createdBy: string;
+  isActive: boolean;
 }
 
 const AccountList = () => {
+  const { token } = useAuth();
   const [accounts, setAccounts] = useState<FormData[]>([]);
   const [loading, setLoading] = useState(true);
+  const loadAccounts = async () => {
+    try {
+      const data = await fetchCompanyAccount(token || "");
+      setAccounts(data);
+      console.log("data", data);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const loadAccounts = async () => {
-      try {
-        const data = await fetchCompanyAccount();
-        setAccounts(data);
-      } finally {
-        setLoading(false);
-      }
-    };
 
     loadAccounts();
   }, []);
 
-  const handleCreateAccount = (formData: FormData) => {
-    console.log("chap nhan", formData);
+  const handleCreateAccount = async (formData: FormData) => {
+    const response = await axios.put(`http://34.118.180.85/api/admin/editStatus/`, {
+      accountId: formData._id,
+      isActive: true
+    }, {
+      headers: {
+        Authorization: token,
+      },
+    })
+
+    loadAccounts();
+    toast.success("Tạo tài khoản thành công");
   };
 
   const handleDeleteAccount = (formData: FormData) => {

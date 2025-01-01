@@ -19,9 +19,14 @@ type RecruiterData = {
   recruitersCreatedEachMonth: MonthlyData[];
 };
 
+type CompanyData = {
+  totalCompanies: number;
+};
+
 type GrowthData = {
   users: UserData;
   recruiters: RecruiterData;
+  companies: CompanyData;
 };
 
 const fetchGrowthData = async (token: string): Promise<GrowthData> => {

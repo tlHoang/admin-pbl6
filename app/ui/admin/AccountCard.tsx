@@ -1,15 +1,13 @@
 import { FC, useEffect, useState } from "react";
 
 interface FormData {
-  name: string;
+  _id: string;
+  userId: string;
   email: string;
-  industry: string;
-  phone: string;
-  location: {
-    city: string;
-    address: string;
-  };
-  website: string;
+  name: string;
+  role: string;
+  createdBy: string;
+  isActive: boolean;
 }
 interface AccountCardProps {
   key: number;
@@ -20,32 +18,23 @@ interface AccountCardProps {
 
 const AccountCard: FC<AccountCardProps> = ({ handleCreateAccount, handleDeleteAccount, initialFormData }) => {
   const [formData, setFormData] = useState<FormData>({
-    name: "",
+    _id: "",
+    userId: "",
     email: "",
-    industry: "",
-    phone: "",
-    location: {
-      city: "",
-      address: "",
-    },
-    website: "",
+    name: "",
+    role: "",
+    createdBy: "",
+    isActive: false,
   });
 
   useEffect(() => {
     setFormData(initialFormData);
   }, [initialFormData]);
 
-  // const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-  //   setFormData({
-  //     ...formData,
-  //     [e.target.name]: e.target.value,
-  //   });
-  // };
-
   return (
     <div className="border p-4 rounded-lg shadow">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
-        <div>
+      <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-4">
+        <div className="flex-1">
           <label className="block font-medium">Tên công ty</label>
           <input
             name="companyName"
@@ -54,7 +43,7 @@ const AccountCard: FC<AccountCardProps> = ({ handleCreateAccount, handleDeleteAc
             disabled
           />
         </div>
-        <div>
+        <div className="flex-1">
           <label className="block font-medium">Email công ty</label>
           <input
             name="companyEmail"
@@ -63,82 +52,21 @@ const AccountCard: FC<AccountCardProps> = ({ handleCreateAccount, handleDeleteAc
             disabled
           />
         </div>
-        <div>
-          <label className="block font-medium">Số điện thoại công ty</label>
-          <input
-            name="companyPhone"
-            className="border rounded p-2 w-full"
-            value={formData.phone}
-            disabled
-          />
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
-        <div>
-          <label className="block font-medium">Lĩnh vực</label>
-          <input
-            name="industry"
-            className="border rounded p-2 w-full"
-            value={formData.industry}
-            disabled
-          />
-        </div>
-        <div>
-          <label className="block font-medium">Thành phố</label>
-          <input
-            name="city"
-            className="border rounded p-2 w-full"
-            value={formData.location.city}
-            disabled
-          />
-        </div>
-        <div>
-          <label className="block font-medium">Địa chỉ công ty</label>
-          <input
-            name="address"
-            className="border rounded p-2 w-full"
-            value={formData.location.address}
-            disabled
-          />
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
-        <div>
-          <label className="block font-medium">Website công ty</label>
-          <input
-            name="website"
-            className="border rounded p-2 w-full"
-            value={formData.website}
-            disabled
-          />
-        </div>
-        <div>
-          <label className="block font-medium">Mật khẩu</label>
-          <input
-            name="password"
-            type="password"
-            className="border rounded p-2 w-full"
-          />
-        </div>
-
-        <div className="flex items-end w-full flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-4">
+        <div className="flex items-center space-x-4">
           <button
-            className="bg-blue-500 text-white px-4 py-2 rounded w-full"
+            className="bg-blue-500 text-white px-4 py-2 rounded"
             onClick={() => handleCreateAccount(formData)}
           >
             Tạo tài khoản
           </button>
-          <button
-            className="bg-red-500 text-white px-4 py-2 rounded w-full"
+          {/* <button
+            className="bg-red-500 text-white px-4 py-2 rounded"
             onClick={() => handleDeleteAccount(formData)}
           >
             Xóa
-          </button>
+          </button> */}
         </div>
       </div>
-
     </div>
   );
 };
