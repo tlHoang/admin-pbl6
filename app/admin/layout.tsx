@@ -2,7 +2,7 @@
 import React from "react";
 import VerticalHeader from "../ui/admin/VerticalHeader";
 import Header from "../ui/admin/Header";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import clsx from "clsx";
 
 interface UserLayoutProps {

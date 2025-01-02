@@ -6,7 +6,6 @@ import axios from "axios";
 import { useAuth } from "@/app/contexts/auth-context";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-import withAuth from "@/app/lib/withAuth";
 
 type LoginUser = {
   email: string;

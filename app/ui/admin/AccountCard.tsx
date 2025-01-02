@@ -16,7 +16,7 @@ interface AccountCardProps {
   initialFormData: FormData;
 }
 
-const AccountCard: FC<AccountCardProps> = ({ handleCreateAccount, handleDeleteAccount, initialFormData }) => {
+const AccountCard: FC<AccountCardProps> = ({ handleCreateAccount, initialFormData }) => {
   const [formData, setFormData] = useState<FormData>({
     _id: "",
     userId: "",
