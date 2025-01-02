@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const categories = [
   { id: "1", name: "Graphics & Design" },
   { id: "2", name: "Code & Programming" },
@@ -58,32 +60,38 @@ export async function fetchJobs() {
   ];
 }
 
-export async function fetchCompanyAccount() {
-  await new Promise((resolve) => setTimeout(resolve, 500));
-  return [
-    {
-      name: "Google Inc.",
-      email: "google@google.com",
-      industry: "IT",
-      phone: "0123456789",
-      location: {
-        city: "Đà Nẵng",
-        address: "123 Nguyễn Lương Bằng",
-      },
-      website: "https://google.com",
-    },
-    {
-      name: "Facebook Inc.",
-      email: "facebook@facebook.com",
-      industry: "IT",
-      phone: "0123456789",
-      location: {
-        city: "Hà Nội",
-        address: "456 Nguyễn Lương Bằng",
-      },
-      website: "https://facebook.com",
-    },
-  ];
+export async function fetchCompanyAccount(token: string) {
+  const response = await axios.get('http://34.118.180.85/api/admin/inactiveCompanies', {
+    headers: {
+      'Authorization': token
+    }
+  });
+  return response.data;
+  // await new Promise((resolve) => setTimeout(resolve, 500));
+  // return [
+  //   {
+  //     name: "Google Inc.",
+  //     email: "google@google.com",
+  //     industry: "IT",
+  //     phone: "0123456789",
+  //     location: {
+  //       city: "Đà Nẵng",
+  //       address: "123 Nguyễn Lương Bằng",
+  //     },
+  //     website: "https://google.com",
+  //   },
+  //   {
+  //     name: "Facebook Inc.",
+  //     email: "facebook@facebook.com",
+  //     industry: "IT",
+  //     phone: "0123456789",
+  //     location: {
+  //       city: "Hà Nội",
+  //       address: "456 Nguyễn Lương Bằng",
+  //     },
+  //     website: "https://facebook.com",
+  //   },
+  // ];
 }
 
 export const predefinedSkills = [
@@ -143,7 +151,8 @@ export const companyField = [
   "Truyền thông - Báo chí",
   "Giải trí - Truyền hình",
   "Kiến trúc - Xây dựng",
-  "Dịch vụ khách hàng"
+  "Dịch vụ khách hàng",
+  "Outsourcing",
 ];
 
 export const provinces = [

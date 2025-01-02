@@ -4,7 +4,7 @@ const MainNav = () => {
   return (
     <div className="flex flex-col items-center space-y-2">
       <div className="flex space-x-4">
-        <Link href={"/user/login"}>
+        <Link href={"/admin/login"}>
           <button className="w-32 h-12 px-4 py-2 bg-xanhduong-600 text-white rounded-lg font-semibold">
             Đăng nhập
           </button>

@@ -1,12 +1,21 @@
 import React from 'react';
 
+// type Company = {
+//   _id: string;
+//   name: string;
+//   email: string;
+//   city: string;
+//   field: string;
+// };
+
 type Company = {
   _id: string;
   name: string;
   email: string;
-  city: string;
-  field: string;
-};
+  address: string;
+  category: string;
+  website: string;
+}
 
 type CompanyCardProps = {
   company: Company;
@@ -26,10 +35,10 @@ const CompanyCard: React.FC<CompanyCardProps> = ({ company, onClick }) => {
         <p className="text-gray-600">{company.email}</p>
       </div>
       <div>
-        <p className="text-gray-600">{company.city}</p>
+        <p className="text-gray-600">{company.address}</p>
       </div>
       <div>
-        <p className="text-gray-600">{company.field}</p>
+        <p className="text-gray-600">{company.category}</p>
       </div>
     </div>
   );
