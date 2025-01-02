@@ -13,7 +13,7 @@ export const useUserLocations = (token: string) => {
   useEffect(() => {
     const fetchLocations = async () => {
       try {
-        const response = await axios.get("https://user-service-job-system.onrender.com/api/statistics/demographic/", {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_USERS_API_URL}/api/statistics/demographic/`, {
           headers: {
             Authorization: `${token}`,
           },

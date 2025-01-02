@@ -19,7 +19,7 @@ interface PostResponse {
 }
 
 const fetchPostData = async (token: string): Promise<PostResponse> => {
-  const response = await axios.get("http://34.87.67.60/post-service/jobs-statistic", {
+  const response = await axios.get(`${process.env.NEXT_PUBLIC_POSTS_API_URL}/jobs-statistic`, {
     headers: {
       Authorization: token,
     },

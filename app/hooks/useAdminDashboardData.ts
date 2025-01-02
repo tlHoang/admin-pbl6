@@ -30,7 +30,7 @@ type GrowthData = {
 };
 
 const fetchGrowthData = async (token: string): Promise<GrowthData> => {
-  const response = await axios.get("https://user-service-job-system.onrender.com/api/statistics/growth/", {
+  const response = await axios.get(`${process.env.NEXT_PUBLIC_USERS_API_URL}/api/statistics/growth/`, {
     headers: {
       Authorization: token,
     },

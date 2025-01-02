@@ -72,7 +72,7 @@ const CandidateManager = () => {
   return (
     <div className="container mx-auto p-6">
       <h2 className="text-2xl font-semibold mt-8 mb-2">
-        Số lượng ứng viên: {candidates.length}
+        Số lượng ứng viên: {candidates.length - 1}
       </h2>
       <CandidateSearchBar
         onSearch={handleSearch}
