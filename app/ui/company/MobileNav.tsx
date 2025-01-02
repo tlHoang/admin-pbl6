@@ -133,7 +133,7 @@ const MobileNav = () => {
           ) : (
             <>
               {/* Guest navigation */}
-              <Link href="/user/login" className="w-full">
+              <Link href="/admin/login" className="w-full">
                 <button className="h-12 w-full px-4 py-2 bg-xanhduong-600 text-white rounded-lg font-semibold">
                   Đăng nhập
                 </button>

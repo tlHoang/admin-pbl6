@@ -8,13 +8,23 @@ import { useAuth } from "@/app/contexts/auth-context";
 import CompanyCard from "@/app/ui/admin/CompanyCard";
 import { AdminDashboardListSkeleton } from "@/app/ui/AdminSkeletons";
 import { useState } from "react";
+import withAuth from "@/app/lib/withAuth";
+
+// type Company = {
+//   _id: string;
+//   name: string;
+//   email: string;
+//   city: string;
+//   field: string;
+// }
 
 type Company = {
   _id: string;
   name: string;
   email: string;
-  city: string;
-  field: string;
+  address: string;
+  category: string;
+  website: string;
 }
 
 const CompanyManager = () => {
@@ -26,10 +36,10 @@ const CompanyManager = () => {
 
   const initialSearch = searchParams.get("search") || "";
   const initialLocation = searchParams.get("location") || "";
-  const initialField = searchParams.get("field") || "";
+  const initialCategory = searchParams.get("category") || "";
   const [searchQuery, setSearchQuery] = useState<string>(initialSearch);
   const [location, setLocation] = useState<string>(initialLocation);
-  const [field, setField] = useState<string>(initialField);
+  const [category, setCategory] = useState<string>(initialCategory);
 
   const { data, isLoading } = useAdminCompanyManager(token || "");
 
@@ -47,21 +57,21 @@ const CompanyManager = () => {
     return <div>No data</div>;
   }
 
-  const handleSearch = (query: string, loc: string, field: string) => {
+  const handleSearch = (query: string, loc: string, category: string) => {
     setSearchQuery(query);
     setLocation(loc);
-    setField(field);
-    router.push(`/admin/company-manager?search=${query}&location=${loc}&field=${field}`);
+    setCategory(category);
+    router.push(`/admin/company-manager?search=${query}&location=${loc}&category=${category}`);
   };
 
   const filteredData = data.filter((company: Company) => {
-    if (field === "") {
-      console.log("field is empty");
+    if (category === "") {
+      console.log("category is empty");
     }
     return (
       company.name.toLowerCase().includes(searchQuery.toLowerCase()) &&
-      company.city?.toLowerCase().includes(location.toLowerCase())
-      // company.field?.toLowerCase().includes(field.toLowerCase())
+      company.address[0]?.toLowerCase().includes(location.toLowerCase()) &&
+      company.category?.toLowerCase().includes(category.toLowerCase())
     );
   });
 
@@ -70,7 +80,7 @@ const CompanyManager = () => {
   const currentData = filteredData.slice(startIndex, startIndex + companyPerPage);
 
   const handleCompany = (company: Company) => {
-    router.push(`/admin/company-manager/${company._id}?name=${company.name}&email=${company.email}&city=${company.city}&field=${company.field}`);
+    router.push(`/admin/company-manager/${company._id}?name=${company.name}&email=${company.email}&city=${company.address[0]}&category=${company.address[0]}`);
   };
 
   return (
@@ -81,7 +91,7 @@ const CompanyManager = () => {
       <SearchBar
         initialSearch={initialSearch}
         initialLocation={initialLocation}
-        initialField={initialField}
+        initialField={initialCategory}
         onSearch={handleSearch}
       />
       <div className="my-5">
@@ -112,4 +122,4 @@ const CompanyManager = () => {
   );
 };
 
-export default CompanyManager;
+export default withAuth(CompanyManager, ["admin"]);

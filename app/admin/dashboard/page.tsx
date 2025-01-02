@@ -21,6 +21,8 @@ import Link from "next/link"
 import { AdminDashboardSkeleton } from "@/app/ui/sketetons";
 import { useAdminDashboardData } from "@/app/hooks/useAdminDashboardData";
 import { useUserLocations } from "@/app/hooks/useUserLocations";
+import { usePostData } from "@/app/hooks/usePostData";
+import withAuth from "@/app/lib/withAuth";
 
 interface LocationData {
   location: string;
@@ -31,32 +33,29 @@ const Dashboard = () => {
   const [activeChart, setActiveChart] = React.useState<keyof typeof chartConfig>("candidate")
   const { token } = useAuth();
   const { data, isLoading } = useAdminDashboardData(token ?? "");
-  const { locations, isLoading: isLoadingLocations } = useUserLocations(token ?? ""); // Use the new hook
+  const { locations, isLoading: isLoadingLocations } = useUserLocations(token ?? "");
+  const { data: postData, isLoading: isLoadingPosts } = usePostData(token ?? "");
 
-  if (isLoading) {
+  console.log(postData)
+
+  if (isLoading || isLoadingPosts) {
     return (
       <AdminDashboardSkeleton />
     )
   }
 
-  if (!data) {
+  if (!data || !postData) {
     return (
       <div>no data</div>
     )
   }
-
-  // const chartData = data.users.usersCreatedEachMonth.map((item, index) => ({
-  //   date: `${item.year}-${item.month.toString().padStart(2, "0")}-01`,
-  //   candidate: item.count,
-  //   recruiter: data.recruiters.recruitersCreatedEachMonth[index].count,
-  // }))
-  // .reverse()
 
   const chartData = data.users.usersCreatedEachMonth
     .map((item, index) => ({
       date: `${item.year}-${item.month.toString().padStart(2, "0")}-01`,
       candidate: item.count,
       recruiter: data.recruiters.recruitersCreatedEachMonth[index].count,
+      post: postData.data.postCreatedEachMonth.find(postItem => Number(postItem.year) === item.year && Number(postItem.month) === item.month)?.count || 0,
     }))
     .filter((item) => {
       const date = new Date(item.date);
@@ -67,6 +66,8 @@ const Dashboard = () => {
     })
     .reverse();
 
+  console.log(chartData)
+
   const chartConfig = {
     views: {
       label: "Tạo mới",
@@ -75,13 +76,13 @@ const Dashboard = () => {
       label: "Người tìm việc",
       color: "hsl(var(--chart-1))",
     },
-    // company: {
-    //   label: "Công ty",
-    //   color: "hsl(var(--chart-2))",
-    // },
     recruiter: {
       label: "Nhà tuyển dụng",
       color: "hsl(var(--chart-3))",
+    },
+    post: {
+      label: "Bài đăng",
+      color: "hsl(var(--chart-4))",
     },
   } satisfies ChartConfig
 
@@ -89,6 +90,7 @@ const Dashboard = () => {
     candidate: data.users.totalUsers,
     company: data.companies.totalCompanies,
     recruiter: data.recruiters.totalRecruiters,
+    post: postData.data.totalPosts,
   }
 
   return (
@@ -153,7 +155,7 @@ const Dashboard = () => {
               </CardDescription>
             </div>
             <div className="flex">
-              {["candidate", "recruiter"].map((key) => {
+              {["candidate", "recruiter", "post"].map((key) => {
                 const chart = key as keyof typeof chartConfig
                 return (
                   <button
@@ -246,4 +248,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default withAuth(Dashboard, ["admin"])

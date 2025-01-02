@@ -84,7 +84,7 @@ const VerticalHeader = () => {
               Grant Accounts
             </button>
           </Link>
-          <Link href="/admin/post-manager">
+          {/* <Link href="/admin/post-manager">
             <button
               className={clsx(
                 withIconClass,
@@ -104,7 +104,7 @@ const VerticalHeader = () => {
               />
               Post Manager
             </button>
-          </Link>
+          </Link> */}
           <div className={headerClass}>Candidate</div>
 
           <Link href="/admin/candidate-manager">

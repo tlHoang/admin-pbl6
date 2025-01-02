@@ -29,44 +29,40 @@ const MainNav = () => {
         <>
           <Link
             href="/recruiter/dashboard"
-            className={`text-lg px-3 py-2 rounded-lg ${
-              isActive("/recruiter/dashboard")
+            className={`text-lg px-3 py-2 rounded-lg ${isActive("/recruiter/dashboard")
                 ? "bg-xanhduong-600 text-white"
                 : "text-blue-600"
-            } hover:bg-xanhduong-500 hover:text-white`}
+              } hover:bg-xanhduong-500 hover:text-white`}
           >
             Trang chủ
           </Link>
           <Link
             href="/recruiter/post-job"
-            className={`text-lg px-3 py-2 rounded-lg ${
-              isActive("/recruiter/post-job")
+            className={`text-lg px-3 py-2 rounded-lg ${isActive("/recruiter/post-job")
                 ? "bg-xanhduong-600 text-white"
                 : "text-blue-600"
-            } hover:bg-xanhduong-500 hover:text-white`}
+              } hover:bg-xanhduong-500 hover:text-white`}
           >
             Đăng tuyển
           </Link>
           <Link
             href="/recruiter/post-manager"
-            className={`text-lg px-3 py-2 rounded-lg ${
-              isActive("/recruiter/post-manager") ||
-              isActive("/recruiter/candidate-manager") ||
-              isActive("/recruiter/edit-post") ||
-              isActive("/search-job")
+            className={`text-lg px-3 py-2 rounded-lg ${isActive("/recruiter/post-manager") ||
+                isActive("/recruiter/candidate-manager") ||
+                isActive("/recruiter/edit-post") ||
+                isActive("/search-job")
                 ? "bg-xanhduong-600 text-white"
                 : "text-blue-600"
-            } hover:bg-xanhduong-500 hover:text-white`}
+              } hover:bg-xanhduong-500 hover:text-white`}
           >
             Bài đăng
           </Link>
           <Link
             href="/recruiter/mess-firebase"
-            className={`text-lg px-3 py-2 rounded-lg ${
-              isActive("/recruiter/mess-firebase")
+            className={`text-lg px-3 py-2 rounded-lg ${isActive("/recruiter/mess-firebase")
                 ? "bg-xanhduong-600 text-white"
                 : "text-blue-600"
-            } hover:bg-xanhduong-500 hover:text-white`}
+              } hover:bg-xanhduong-500 hover:text-white`}
           >
             Nhắn tin
           </Link>
@@ -101,7 +97,7 @@ const MainNav = () => {
       ) : (
         <div className="flex flex-col items-center space-y-2">
           <div className="flex space-x-4">
-            <Link href={"/user/login"}>
+            <Link href={"/admin/login"}>
               <button className="w-32 h-12 px-4 py-2 bg-xanhduong-600 text-white rounded-lg font-semibold">
                 Đăng nhập
               </button>

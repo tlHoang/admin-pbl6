@@ -7,6 +7,7 @@ import axios from "axios";
 import { formatDOB } from "@/app/lib/utils";
 import { UserDetailSkeleton } from "@/app/ui/sketetons";
 import { usePathname } from "next/navigation";
+import withAuth from "@/app/lib/withAuth";
 
 type UserProfileType = {
   email: string;
@@ -228,4 +229,4 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage;
+export default withAuth(ProfilePage, ["admin"]);

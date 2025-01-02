@@ -8,6 +8,7 @@ import Pagination from "@/app/ui/Pagination";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import CandidateSearchBar from "@/app/ui/admin/CandidateSearchBar";
+import withAuth from "@/app/lib/withAuth";
 
 type Candidate = {
   _id: string;
@@ -106,4 +107,5 @@ const CandidateManager = () => {
   );
 };
 
-export default CandidateManager;
+
+export default withAuth(CandidateManager, ["admin"]);

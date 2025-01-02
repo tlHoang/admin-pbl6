@@ -151,7 +151,8 @@ export const companyField = [
   "Truyền thông - Báo chí",
   "Giải trí - Truyền hình",
   "Kiến trúc - Xây dựng",
-  "Dịch vụ khách hàng"
+  "Dịch vụ khách hàng",
+  "Outsourcing",
 ];
 
 export const provinces = [

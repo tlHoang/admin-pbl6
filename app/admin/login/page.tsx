@@ -6,6 +6,7 @@ import axios from "axios";
 import { useAuth } from "@/app/contexts/auth-context";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import withAuth from "@/app/lib/withAuth";
 
 type LoginUser = {
   email: string;
@@ -69,8 +70,8 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-tr from-white to-toreabay-700">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md border-gray-300 border-2">
         <h1 className="text-3xl font-semibold mb-6 text-center">Đăng nhập</h1>
         <form onSubmit={handleSubmit}>
           <label className="block mb-1 text-sm font-medium text-gray-700">

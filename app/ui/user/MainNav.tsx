@@ -28,41 +28,37 @@ const MainNav = () => {
         <>
           <Link
             href="/search-job"
-            className={`text-lg px-3 py-2 rounded-lg ${
-              isActive("/search-job")
+            className={`text-lg px-3 py-2 rounded-lg ${isActive("/search-job")
                 ? "bg-xanhduong-600 text-white"
                 : "text-blue-600"
-            } hover:bg-xanhduong-500 hover:text-white`}
+              } hover:bg-xanhduong-500 hover:text-white`}
           >
             Tìm việc
           </Link>
           <Link
             href="/my-jobs"
-            className={`text-lg px-3 py-2 rounded-lg ${
-              isActive("/my-jobs")
+            className={`text-lg px-3 py-2 rounded-lg ${isActive("/my-jobs")
                 ? "bg-xanhduong-600 text-white"
                 : "text-blue-600"
-            } hover:bg-xanhduong-500 hover:text-white`}
+              } hover:bg-xanhduong-500 hover:text-white`}
           >
             Công việc
           </Link>
           <Link
             href="/mess-firebase"
-            className={`text-lg px-3 py-2 rounded-lg ${
-              isActive("/mess-firebase")
+            className={`text-lg px-3 py-2 rounded-lg ${isActive("/mess-firebase")
                 ? "bg-xanhduong-600 text-white"
                 : "text-blue-600"
-            } hover:bg-xanhduong-500 hover:text-white`}
+              } hover:bg-xanhduong-500 hover:text-white`}
           >
             Nhắn tin
           </Link>
           <Link
             href="/profile"
-            className={`text-lg px-3 py-2 rounded-lg ${
-              isActive("/profile")
+            className={`text-lg px-3 py-2 rounded-lg ${isActive("/profile")
                 ? "bg-xanhduong-600 text-white"
                 : "text-blue-600"
-            } hover:bg-xanhduong-500 hover:text-white`}
+              } hover:bg-xanhduong-500 hover:text-white`}
           >
             Cá nhân
           </Link>
@@ -97,7 +93,7 @@ const MainNav = () => {
       ) : (
         <div className="flex flex-col items-center space-y-2">
           <div className="flex space-x-4">
-            <Link href={"/user/login"}>
+            <Link href={"/admin/login"}>
               <button className="w-32 h-12 px-4 py-2 bg-xanhduong-600 text-white rounded-lg font-semibold">
                 Đăng nhập
               </button>

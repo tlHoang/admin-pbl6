@@ -28,11 +28,10 @@ const MainNav = () => {
         <>
           <Link
             href="/company/dashboard"
-            className={`text-lg px-3 py-2 rounded-lg ${
-              isActive("/company/dashboard")
+            className={`text-lg px-3 py-2 rounded-lg ${isActive("/company/dashboard")
                 ? "bg-xanhduong-600 text-white"
                 : "text-blue-600"
-            } hover:bg-xanhduong-500 hover:text-white`}
+              } hover:bg-xanhduong-500 hover:text-white`}
           >
             Trang chủ
           </Link>
@@ -48,23 +47,21 @@ const MainNav = () => {
           </Link> */}
           <Link
             href="/company/recruiter-manager"
-            className={`text-lg px-3 py-2 rounded-lg ${
-              isActive("/company/recruiter-manager")
+            className={`text-lg px-3 py-2 rounded-lg ${isActive("/company/recruiter-manager")
                 ? "bg-xanhduong-600 text-white"
                 : "text-blue-600"
-            } hover:bg-xanhduong-500 hover:text-white`}
+              } hover:bg-xanhduong-500 hover:text-white`}
           >
             TK tuyển dụng
           </Link>
           <Link
             href="/company/post-manager"
-            className={`text-lg px-3 py-2 rounded-lg ${
-              isActive("/company/post-manager") ||
-              isActive("/company/candidate-manager") ||
-              isActive("/company/edit-post")
+            className={`text-lg px-3 py-2 rounded-lg ${isActive("/company/post-manager") ||
+                isActive("/company/candidate-manager") ||
+                isActive("/company/edit-post")
                 ? "bg-xanhduong-600 text-white"
                 : "text-blue-600"
-            } hover:bg-xanhduong-500 hover:text-white`}
+              } hover:bg-xanhduong-500 hover:text-white`}
           >
             Bài đăng
           </Link>
@@ -109,7 +106,7 @@ const MainNav = () => {
       ) : (
         <div className="flex flex-col items-center space-y-2">
           <div className="flex space-x-4">
-            <Link href={"/user/login"}>
+            <Link href={"/admin/login"}>
               <button className="w-32 h-12 px-4 py-2 bg-xanhduong-600 text-white rounded-lg font-semibold">
                 Đăng nhập
               </button>
