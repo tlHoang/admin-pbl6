@@ -23,7 +23,7 @@ const withAuth = <P extends object>(
     useEffect(() => {
       if (!isLoggedIn || !allowedRoles.includes(user?.role as string)) {
         logout();
-        router.push('/user/login');
+        router.push('/admin/login');
       }
     }, [isLoggedIn, user]);
 
