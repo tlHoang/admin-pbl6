@@ -61,7 +61,7 @@ export async function fetchJobs() {
 }
 
 export async function fetchCompanyAccount(token: string) {
-  const response = await axios.get('http://34.118.180.85/api/admin/inactiveCompanies', {
+  const response = await axios.get(`${process.env.NEXT_PUBLIC_AUTH_API_URL}/api/admin/inactiveCompanies`, {
     headers: {
       'Authorization': token
     }

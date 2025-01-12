@@ -37,7 +37,7 @@ const AccountList = () => {
   }, []);
 
   const handleCreateAccount = async (formData: FormData) => {
-    await axios.put(`http://34.118.180.85/api/admin/editStatus/`, {
+    await axios.put(`${process.env.NEXT_PUBLIC_AUTH_API_URL}/api/admin/editStatus/`, {
       accountId: formData._id,
       isActive: true
     }, {

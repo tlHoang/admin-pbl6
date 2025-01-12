@@ -18,7 +18,7 @@ const fetchCompanyData = async (token: string): Promise<Company[]> => {
     },
   });
 
-  const inactiveResponse = await axios.get('http://34.118.180.85/api/admin/inactiveCompanies', {
+  const inactiveResponse = await axios.get(`${process.env.NEXT_PUBLIC_AUTH_API_URL}/api/admin/inactiveCompanies`, {
     headers: {
       Authorization: token,
     },
